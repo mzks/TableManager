@@ -1,24 +1,25 @@
-#include "TableReader.hpp"
+#include "TableReader.hh"
+
+TableReader::TableReader(){
+};
 
 TableReader::TableReader(TString in){
     InputFilename = in;
-    ifs = std::ifstream(InputFilename);
-
-    this->Read();
 };
 
 TableReader::~TableReader(){
+    ifs.close();
 };
 
-void TableReader::Read(){
+bool TableReader::Read(){
+
+    ifs = std::ifstream(InputFilename);
+    if(!ifs) return false;
 
     std::string str;
     while(getline(ifs, str)){
+        // Comments
         if('#' == str.c_str()[0]) continue;
-        if('%' == str.c_str()[0]){
-            DescriptionColumn = str;
-            continue;
-        }
 
         std::stringstream ss(str);
         std::string item;
@@ -28,6 +29,17 @@ void TableReader::Read(){
                 elems.push_back(item);
             }
         }
+
+        // Column description
+        if('%' == str.c_str()[0]){
+            DescriptionColumn = str;
+            for(int i=2;i<elems.size();++i){
+                ColName.insert(std::make_pair(elems.at(i),i-1));
+            }
+            continue;
+        }
+
+        // Table contents
         std::vector<double> tmpvec;
         for(int i=1;i<elems.size();++i){
             tmpvec.push_back(std::stod(elems.at(i)));
@@ -36,4 +48,5 @@ void TableReader::Read(){
         contents.insert(std::make_pair(std::stoi(elems.at(0)), tmpvec));
 
     }
+    return true;
 }

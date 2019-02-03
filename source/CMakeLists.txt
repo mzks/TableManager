@@ -14,19 +14,10 @@ find_package(ROOT REQUIRED COMPONENTS MathCore RIO Net Hist Tree Minuit)
 include(${ROOT_USE_FILE})
 
 include_directories(${PROJECT_SOURCE_DIR}/include)
-#ROOT_GENERATE_DICTIONARY(G__Event Event.h LINKDEF EventLinkDef.h)
-
-#---Create a shared library with geneated dictionary
-#add_library(Event SHARED Event.cxx G__Event.cxx)
-#target_link_libraries(Event ${ROOT_LIBRARIES})
-
-#---Create  a main program using the library
-#add_executable(Main MainEvent.cxx)
-#target_link_libraries(Main Event)
 
 
 file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cpp)
-file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hpp)
+file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 
 add_definitions(${ROOT_CXX_FLAGS})
 add_executable(test src/test.cpp ${sources} ${headers})
