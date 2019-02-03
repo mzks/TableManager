@@ -1,6 +1,6 @@
 # CMakeLists.txt for event package. It creates a library with dictionary and a main program
 cmake_minimum_required(VERSION 3.0 FATAL_ERROR)
-project(nora)
+project(test)
 
 # You need to tell CMake where to find the ROOT installation. This can be done in a number of ways:
 #   - ROOT built with classic configure/make use the provided $ROOTSYS/etc/cmake/FindROOT.cmake
@@ -29,9 +29,9 @@ file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cpp)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hpp)
 
 add_definitions(${ROOT_CXX_FLAGS})
-add_executable(nora src/test.cpp ${sources} ${headers})
-target_link_libraries(nora ${ROOT_LIBRARIES})
+add_executable(test src/test.cpp ${sources} ${headers})
+target_link_libraries(test ${ROOT_LIBRARIES})
 
 set(CMAKE_INSTALL_PREFIX "..")
-add_custom_target(NORA DEPENDS nora)
-install(TARGETS nora DESTINATION bin)
+add_custom_target(TEST DEPENDS test)
+install(TARGETS test DESTINATION bin)

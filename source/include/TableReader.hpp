@@ -11,11 +11,11 @@ class TableReader{
     private:
         TString InputFilename;
         std::ifstream ifs;
-        int NumOfColumn;
 
     public:
-        TableReader(TString in, int Column);
+        TableReader(TString in);
         ~TableReader();
         void Read();
         std::map<int, std::vector<double> > contents;
+        TString DescriptionColumn;
 };
