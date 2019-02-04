@@ -42,6 +42,9 @@ class TableReader{
     private:
         std::ifstream ifs;
 
+        /// @brief requires to read once
+        bool AlreadyRead;
+
     public:
         /// @brief table file name
         /// @details set in constructor or manually
@@ -71,5 +74,7 @@ class TableReader{
         /// Comment in table using %
         TString DescriptionColumn;
 
+        /// Output all table contents for debug
+        void OutputAll();
 
 };

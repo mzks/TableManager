@@ -9,9 +9,11 @@ int main(int argc, char** argv){
         table.Read();
     }
 
-    std::cout << table.DescriptionColumn << std::endl;
-    std::cout << table.contents.at(5).at(0) << std::endl;
-    std::cout << table.contents.at(5).at(table.ColName.at("energy")) << std::endl;
+    //std::cout << table.DescriptionColumn << std::endl;
+    //std::cout << table.contents.at(5).at(0) << std::endl;
+    //std::cout << table.contents.at(5).at(table.ColName.at("energy")) << std::endl;
+
+    table.OutputAll();
 
     return 0;
 }

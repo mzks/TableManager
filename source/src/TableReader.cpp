@@ -1,9 +1,11 @@
 #include "TableReader.hh"
 
 TableReader::TableReader(){
+    AlreadyRead = false;
 };
 
 TableReader::TableReader(TString in){
+    AlreadyRead = false;
     InputFilename = in;
 };
 
@@ -16,6 +18,9 @@ bool TableReader::Read(){
     ifs = std::ifstream(InputFilename);
     if(!ifs) return false;
 
+    if(AlreadyRead == true) return false;
+
+    AlreadyRead = true;
     std::string str;
     while(getline(ifs, str)){
         // Comments
@@ -49,4 +54,19 @@ bool TableReader::Read(){
 
     }
     return true;
+}
+
+void TableReader::OutputAll(){
+
+    std::cout << InputFilename << std::endl;
+    std::cout << DescriptionColumn << std::endl;
+
+    for(auto itr = contents.begin(); itr != contents.end(); ++itr) {
+        std::cout << itr->first << "  ";
+        for(int i=0;i<itr->second.size();++i){
+            std::cout << itr->second.at(i) << "  ";
+        }
+        std::cout << std::endl;
+    }
+    
 }
