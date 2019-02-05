@@ -2,13 +2,11 @@
 
 TableReader::TableReader(){
     AlreadyRead = false;
-    DescriptionColumn = "";
 };
 
 TableReader::TableReader(TString in){
     AlreadyRead = false;
     InputFilename = in;
-    DescriptionColumn = "";
 };
 
 TableReader::~TableReader(){
@@ -54,12 +52,6 @@ bool TableReader::Read(){
 
         contents.insert(std::make_pair(std::stoi(elems.at(0)), tmpvec));
 
-    }
-
-    if(true){
-       for(int i=0; i<contents.begin()->second.size();++i){
-           ColNames.insert(std::make_pair(Form("col%02d",i), i));
-       }
     }
     return true;
 }
