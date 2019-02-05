@@ -39,7 +39,7 @@ bool TableReader::Read(){
         if('%' == str.c_str()[0]){
             DescriptionColumn = str;
             for(int i=2;i<elems.size();++i){
-                ColName.insert(std::make_pair(elems.at(i),i-1));
+                ColNames.insert(std::make_pair(elems.at(i),i-2));
             }
             continue;
         }
@@ -69,4 +69,12 @@ void TableReader::OutputAll(){
         std::cout << std::endl;
     }
     
+}
+
+double TableReader::Get(std::string ColName, int index){
+    return this->contents.at(index).at(this->ColNames.at(ColName)) ;
+}
+
+double TableReader::Get(int index, std::string ColName){
+    return this->contents.at(index).at(this->ColNames.at(ColName)) ;
 }

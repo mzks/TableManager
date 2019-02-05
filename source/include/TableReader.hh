@@ -69,12 +69,17 @@ class TableReader{
         std::map<int, std::vector<double> > contents;
 
         /// Get column number by name
-        std::map<std::string, int> ColName;
+        std::map<std::string, int> ColNames;
 
         /// Comment in table using %
         TString DescriptionColumn;
 
         /// Output all table contents for debug
         void OutputAll();
+
+        /// Get Parameter using column name
+        double Get (std::string ColName, int index);
+        double Get (int index, std::string ColName);
+
 
 };
