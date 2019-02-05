@@ -57,13 +57,11 @@ class TableReader{
         /// @param[in] in input filename of tables
         TableReader(TString in);
 
-        ~TableReader();
-
-        /// @brief Read table
+        /// @brief Load table
         /// @details This function reads the table actually.
         /// Set contents, ColName, and DescriptionColumn.
         /// @return bool If the file reading is succeeded, return true.
-        bool Read();
+        bool Load();
 
         /// Contener of table, its 1st columns are keys.
         std::map<int, std::vector<double> > contents;
@@ -78,8 +76,8 @@ class TableReader{
         void OutputAll();
 
         /// Get Parameter using column name
-        double Get (std::string ColName, int index);
-        double Get (int index, std::string ColName);
+        double Read (std::string ColName, unsigned int index);
+        double Read (unsigned int index, std::string ColName);
 
 
 };

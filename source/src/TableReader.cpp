@@ -35,7 +35,7 @@ bool TableReader::Load(){
         // Column description
         if('%' == str.c_str()[0]){
             DescriptionColumn = str;
-            for(auto i=2;i<elems.size();++i){
+            for(unsigned int i=2;i<elems.size();++i){
                 ColNames.insert(std::make_pair(elems.at(i),i-2));
             }
             continue;
@@ -60,13 +60,14 @@ bool TableReader::Load(){
 void TableReader::OutputAll(){
     std::cout << InputFilename << std::endl;
     std::cout << DescriptionColumn << std::endl;
-    for (auto &content : contents) {
-        std::cout << content.first << "  ";
-        for (double i : content.second) {
-            std::cout << i << "  ";
+    for(std::map<int, std::vector<double> >::iterator itr = contents.begin(); itr != contents.end(); ++itr) {
+        std::cout << itr->first << "  ";
+        for(int i=0;i<itr->second.size();++i){
+            std::cout << itr->second.at(i) << "  ";
         }
         std::cout << std::endl;
     }
+
 }
 
 double TableReader::Read(std::string ColName, unsigned int index){

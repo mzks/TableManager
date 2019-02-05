@@ -24,16 +24,21 @@ Initial column requires to be integer.
 Others casted to double.
 
 First, set input filename in this constructor or `InputFilename` manually.
-Then, call `Read()` function.
+Then, call `Load()` function.
 ```
-TableReader myReader("./example.txt");
-if(!myReader.Read()) return 0;
+TableReader table("./example.txt");
+if(!table.Load()){
+\\failure
+ return 1;
+ }
 ```
 
 You can access the contents by
 ```
-double val1 = myReader.contents.at(1).at(0);
+double val1 = table.contents.at(1).at(0);
 //100.0
-double val2 = myReader.Get("X",2);
+double val2 = table.Read("X",2);
 //110.0
+double val3 = table.Read(3, "col02");
+//320.0
 ```
