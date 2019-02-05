@@ -6,7 +6,7 @@ int main(int argc, char** argv){
 
     TableReader table("../table3.txt");
     if(!table.Read()){
-        table.InputFilename = "../table3.txt.old";
+        table.InputFilename = "./table.txt";
         table.Read();
     }
 
