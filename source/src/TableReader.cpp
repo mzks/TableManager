@@ -7,12 +7,7 @@ TableReader::TableReader(){
 
 TableReader::TableReader(TString in){
     AlreadyRead = false;
-<<<<<<< HEAD
     InputFilename = in;
-=======
-    InputFilename = std::move(in);
-    DescriptionColumn = "";
->>>>>>> 004b864ee804bbc8d77a54f0e97094e735bcc5cc
 };
 
 bool TableReader::Load(){
@@ -55,13 +50,10 @@ bool TableReader::Load(){
         contents.insert(std::make_pair(std::stoi(elems.at(0)), tmpvec));
 
     }
-<<<<<<< HEAD
-=======
 
     for(int i=0; i<contents.begin()->second.size();++i){
         ColNames.insert(std::make_pair(Form("col%02d",i), i));
     }
->>>>>>> 004b864ee804bbc8d77a54f0e97094e735bcc5cc
     return true;
 }
 
