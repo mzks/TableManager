@@ -1,4 +1,4 @@
-#TableReader
+# TableReader
 
 ASCII table reader for CANDLES analysis.
 
@@ -33,7 +33,7 @@ if(!myReader.Read()) return 0;
 You can access the contents by
 ```
 double val1 = myReader.contents.at(1).at(0);
-//100
-double val2 = myReader.contents.at(3).at(myReader.ColName.at("Y"));
-//220
+//100.0
+double val2 = myReader.Get("X",2);
+//110.0
 ```
