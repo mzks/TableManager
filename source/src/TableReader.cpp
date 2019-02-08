@@ -12,7 +12,7 @@ TableReader::TableReader(TString in){
 
 bool TableReader::Load(){
 
-    ifs = std::ifstream(InputFilename);
+    ifs.open(InputFilename.Data());
     if(!ifs) return false;
 
     if(AlreadyRead) return false;
@@ -43,7 +43,7 @@ bool TableReader::Load(){
 
         // Table contents
         std::vector<double> tmpvec;
-        for(int i=1;i<elems.size();++i){
+        for(unsigned int i=1;i<elems.size();++i){
             tmpvec.push_back(stod(elems.at(i)));
         }
 
@@ -51,7 +51,7 @@ bool TableReader::Load(){
 
     }
 
-    for(int i=0; i<contents.begin()->second.size();++i){
+    for(unsigned int i=0; i<contents.begin()->second.size();++i){
         ColNames.insert(std::make_pair(Form("col%02d",i), i));
     }
     return true;
@@ -62,7 +62,7 @@ void TableReader::OutputAll(){
     std::cout << DescriptionColumn << std::endl;
     for(std::map<int, std::vector<double> >::iterator itr = contents.begin(); itr != contents.end(); ++itr) {
         std::cout << itr->first << "  ";
-        for(int i=0;i<itr->second.size();++i){
+        for(unsigned int i=0;i<itr->second.size();++i){
             std::cout << itr->second.at(i) << "  ";
         }
         std::cout << std::endl;

@@ -23,6 +23,8 @@ add_definitions(${ROOT_CXX_FLAGS})
 add_executable(test1 src/test1.cpp ${sources} ${headers})
 target_link_libraries(test1 ${ROOT_LIBRARIES})
 
+set(CMAKE_CXX_FLAGS "-O2 -std=c++0x -Wall")
+
 set(CMAKE_INSTALL_PREFIX "..")
 add_custom_target(TEST1 DEPENDS test1)
 install(TARGETS test1 DESTINATION bin)
