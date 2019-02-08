@@ -79,5 +79,7 @@ class TableReader{
         double Read (std::string ColName, unsigned int index);
         double Read (unsigned int index, std::string ColName);
 
+        int stoi(const std::string& s);
+        double stod(const std::string& s);
 
 };

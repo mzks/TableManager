@@ -44,10 +44,10 @@ bool TableReader::Load(){
         // Table contents
         std::vector<double> tmpvec;
         for(int i=1;i<elems.size();++i){
-            tmpvec.push_back(std::stod(elems.at(i)));
+            tmpvec.push_back(stod(elems.at(i)));
         }
 
-        contents.insert(std::make_pair(std::stoi(elems.at(0)), tmpvec));
+        contents.insert(std::make_pair(stoi(elems.at(0)), tmpvec));
 
     }
 
@@ -76,4 +76,18 @@ double TableReader::Read(std::string ColName, unsigned int index){
 
 double TableReader::Read(unsigned int index, std::string ColName){
     return this->contents.at(index).at(ColNames.at(ColName)) ;
+}
+
+int TableReader::stoi(const std::string& s){
+    std::istringstream str(s);
+    int i;
+    str >> i;
+    return i;
+}
+
+double TableReader::stod(const std::string& s){
+    std::istringstream str(s);
+    double d;
+    str >> d;
+    return d;
 }
